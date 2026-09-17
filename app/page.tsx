@@ -161,7 +161,7 @@ function OtpScreen({ destination, onBack }: { destination: string; onBack: () =>
         <p className="mt-3 text-[13px] font-medium text-red-500">Incorrect code, Please try again</p>
       )}
 
-      <div className="mt-4">
+      <div className="mt-4 text-center">
         {state === "error" || left <= 0 ? (
           <button
             type="button"
