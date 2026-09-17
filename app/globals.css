@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  color: #191234;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+input,
+select {
+  font: inherit;
+}
+input:focus,
+button:focus {
+  outline: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Saudi National Day — seasonal overrides (Creator app, gold lane).    */
+/*                                                                      */
+/* Scoped to [data-snd="on"], which AuthShell sets only inside the date  */
+/* window (app/theme/snd.ts). Outside it, not one rule here applies — so */
+/* the theme needs no revert PR and the default look is provably intact. */
+/*                                                                      */
+/* The primary button stays brand purple: the seasonal identity lives in */
+/* the field, not in the action. But unlike the Brands app there is no   */
+/* white card here — the form sits directly on the dark ground — so the  */
+/* text and fields DO need a dark-surface treatment to stay legible.     */
+/* That is contrast, not decoration.                                    */
+/* ------------------------------------------------------------------ */
+
+[data-snd="on"] .snd-title {
+  color: #f6faf8;
+}
+[data-snd="on"] .snd-subtitle {
+  color: rgba(246, 250, 248, 0.6);
+}
+[data-snd="on"] .snd-count {
+  color: #f6faf8;
+}
+
+/* Fields become translucent surfaces on the dark ground. */
+[data-snd="on"] .snd-field {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(246, 250, 248, 0.18);
+  color: #f6faf8;
+}
+[data-snd="on"] .snd-field::placeholder {
+  color: rgba(246, 250, 248, 0.42);
+}
+[data-snd="on"] .snd-field:focus,
+[data-snd="on"] .snd-field:focus-within {
+  border-color: rgba(244, 224, 182, 0.65);
+  box-shadow: 0 0 0 2px rgba(244, 224, 182, 0.18);
+}
+[data-snd="on"] .snd-dial {
+  color: #f6faf8;
+}
+[data-snd="on"] .snd-caret {
+  color: rgba(246, 250, 248, 0.5);
+}
+
+/* OTP boxes follow the same surface treatment. */
+[data-snd="on"] .snd-otp:not([aria-invalid="true"]) {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(246, 250, 248, 0.18);
+  color: #f6faf8;
+}
+[data-snd="on"] .snd-otp:not([aria-invalid="true"]):focus {
+  border-color: rgba(244, 224, 182, 0.65);
+  box-shadow: 0 0 0 2px rgba(244, 224, 182, 0.18);
+}
+
+/* Disabled primary: brand/40 over the dark teal reads as murky navy, so give
+   it a translucent light surface instead. Contrast, not decoration. */
+[data-snd="on"] .snd-primary:disabled {
+  background-color: rgba(246, 250, 248, 0.14);
+  color: rgba(246, 250, 248, 0.5);
+}
+
+/* Switch links lift to gold — they sit on the field, not on a card. */
+[data-snd="on"] .snd-link {
+  color: #f4e0b6;
+}
+[data-snd="on"] .snd-link:hover {
+  color: #ffffff;
+}
+
+/* Brandmark reverses out; the sub-brand and divider follow. */
+[data-snd="on"] .snd-logo {
+  filter: brightness(0) invert(1);
+}
+[data-snd="on"] .snd-subbrand {
+  color: rgba(246, 250, 248, 0.75);
+}
+[data-snd="on"] .snd-divider {
+  background-color: rgba(246, 250, 248, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
